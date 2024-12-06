@@ -1,14 +1,17 @@
 import Post from "./Post";
 import { PostList as PostListData } from "../store/post-list-store";
 import { useContext } from "react";
+import WelcomeMessage from "./WelcomeMessage";
 const PostList=()=>
 {
     const {postList}=useContext(PostListData);
    // console.log(postList);
  return (
   <>
-  {postList.map((post)=>(
-    <Post key={post.id} post={post}/>
+  {postList.length===0 && <WelcomeMessage/>}
+  {
+  postList.map((post)=>(
+  <Post key={post.id} post={post}/>
   )
   )}
   </>

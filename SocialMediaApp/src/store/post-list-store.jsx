@@ -1,22 +1,22 @@
 import { createContext, useReducer } from "react"
 
-const DEFAULT_POST_LIST=[{
-    id:"1",
-    title:"Go to delhi",
-    body:"Hi friends i am going to delhi on this monday",
-    reactions:2,
-    userId:"user10",
-    tags:['vacation','delhi'],
-},
-{
-    id:"2",
-    title:"Go to agra",
-    body:"Hi friends i am going to agra on this monday",
-    reactions:15,
-    userId:"user10",
-    tags:['sweets','tajmahal'],
-},
-];
+// const DEFAULT_POST_LIST=[{
+//     id:"1",
+//     title:"Go to delhi",
+//     body:"Hi friends i am going to delhi on this monday",
+//     reactions:2,
+//     userId:"user10",
+//     tags:['vacation','delhi'],
+// },
+// {
+//     id:"2",
+//     title:"Go to agra",
+//     body:"Hi friends i am going to agra on this monday",
+//     reactions:15,
+//     userId:"user10",
+//     tags:['sweets','tajmahal'],
+// },
+// ];
 
 export const PostList=createContext({
     postList:[],//list of post 
@@ -41,7 +41,7 @@ const postListReducer=(curPostList,action)=>
 
 const PostListProvider=({children})=>
 {
-  const [postList,dispatchPostList]=useReducer(postListReducer,DEFAULT_POST_LIST);
+  const [postList,dispatchPostList]=useReducer(postListReducer,[]/*DEFAULT_POST_LIST*/);
 
   //function for addition of post 
   const addPost=(userId,postTitle,postBody,reactions,tags)=>
