@@ -1,31 +1,33 @@
-const Sidebar=()=>
+const Sidebar=({selectedtab,setselectedtab})=>
 {
+
+
 return (
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar"
-     style={{width: "280px"}}>
+    <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar"
+     style={{width: "180px"}}>
     <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg className="bi pe-none me-2" width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
       <span className="fs-4">Sidebar</span>
     </a>
     <hr/>
     <ul className="nav nav-pills flex-column mb-auto">
-      <li className="nav-item">
-        <a href="#" className="nav-link active" aria-current="page">
+      <li className="nav-item" onClick={()=>{setselectedtab("Home")}}>
+        <a href="#" className={`nav-link text-white ${selectedtab==="Home" && "active"}`} aria-current="page">
           <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#home"></use></svg>
           Home
         </a>
       </li>
-      <li>
-        <a href="#" className="nav-link text-white">
+      <li onClick={()=>{setselectedtab("Create Post")}}>
+        <a href="#" className={`nav-link text-white ${selectedtab==="Create Post" && "active"}`}>
           <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#speedometer2"></use></svg>
           Create Post
         </a>
       </li>
     </ul>
     <hr/>
-    <div class="dropdown">
+    <div className="dropdown">
       <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"/>
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
         <strong>mdo</strong>
       </a>
       <ul className="dropdown-menu dropdown-menu-dark text-small shadow">

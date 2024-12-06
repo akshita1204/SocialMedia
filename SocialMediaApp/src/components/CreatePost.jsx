@@ -1,21 +1,59 @@
+import { useContext,useRef } from "react";
+import { PostList } from "../store/post-list-store";
 const CreatePost=()=>
 {
+  const {addPost}=useContext(PostList);
+
+const userIdEle=useRef();
+const postTitleEle=useRef();
+const postBodyEle=useRef();
+const reactionsEle=useRef();
+const tagsEle=useRef();
+
+const HandleSubmit=(event)=>
+{
+  event.preventDefault();
+  const userId=userIdEle.current.value;
+  const postTitle=postTitleEle.current.value;
+  const postBody=postBodyEle.current.value;
+  const reactions=reactionsEle.current.value;
+  const tags=tagsEle.current.value.split(" ");
+
+  userIdEle.current.value="";
+  postTitleEle.current.value="";
+  postBodyEle.current.value="";
+  reactionsEle.current.value="";
+
+
+
+  addPost(userId,postTitle,postBody,reactions,tags);
+}
+
+
  return (
-    <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <form className="createpost" onSubmit={HandleSubmit}>
+      <div className="mb-3">
+    <label htmlFor="userid" className="form-label">UserId</label>
+    <input type="text" ref={userIdEle} className="form-control" id="heading" placeholder="Enter your UserId"/>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1"/>
+  <div className="mb-3">
+    <label htmlFor="title" className="form-label">Post Title</label>
+    <input type="text" ref={postTitleEle} className="form-control" id="heading" placeholder="How are you feeling today?"/>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  <div className="mb-3">
+    <label htmlFor="body" className="form-label">Post Content</label>
+    <textarea type="text" ref={postBodyEle} rows="4" className="form-control" id="heading" placeholder="Tell us more about you."/>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div className="mb-3">
+    <label htmlFor="reactions" className="form-label">Reactions</label>
+    <input type="text" ref={reactionsEle} className="form-control" id="heading" placeholder="Reactions on your post"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="tags" className="form-label">Tags</label>
+    <input type="text" ref={tagsEle} className="form-control" id="heading" placeholder="Enter you HashTags"/>
+  </div>
+
+  <button type="submit" className="btn btn-primary">Submit</button>
 </form>
  );
 
