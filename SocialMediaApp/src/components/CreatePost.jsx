@@ -19,14 +19,26 @@ const HandleSubmit=(event)=>
   const reactions=reactionsEle.current.value;
   const tags=tagsEle.current.value.split(" ");
 
-  userIdEle.current.value="";
-  postTitleEle.current.value="";
-  postBodyEle.current.value="";
-  reactionsEle.current.value="";
+  // userIdEle.current.value="";
+  // postTitleEle.current.value="";
+  // postBodyEle.current.value="";
+  // reactionsEle.current.value="";
 
+  fetch('https://dummyjson.com/posts/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title:postTitle,
+      body:postBody,
+      reactions:reactions,
+      userId:userId,
+      tags:tags,
+    })
+  })
+  .then(res => res.json())
+  .then(resobj=>addPost(resobj));
 
-
-  addPost(userId,postTitle,postBody,reactions,tags);
+  //addPost();
 }
 
 
